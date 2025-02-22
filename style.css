@@ -308,10 +308,6 @@ header {
     border-radius: 8px;
 }
 
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
 }
 
 @media (max-width: 480px) {
