@@ -18,7 +18,11 @@
         </header>
         <main>
             <div class="flag-container">
-                <img id="flag-image" src="" alt="Ülke Bayrağı">
+                <img id="flag-image" src="" alt="Ülke Bayrağı" class="hidden">
+                <div id="welcome-message" class="welcome-message">
+                    <h2>Bayrağı Keşfet!</h2>
+                    <p>Oyun başlayınca ilk bayrağı gör!</p>
+                </div>
             </div>
             <div class="options-container">
                 <button class="option"></button>
@@ -27,8 +31,8 @@
                 <button class="option"></button>
             </div>
             <div class="controls">
-                <button id="hint-btn" class="control-btn">İpucu</button>
-                <button id="start-btn" class="control-btn">Yeni Oyun</button>
+                <button id="hint-btn" class="control-btn"><span>📍</span> İpucu</button>
+                <button id="start-btn" class="control-btn"><span>🚩</span> Yeni Oyun</button>
             </div>
         </main>
         <div id="game-over" class="modal hidden">

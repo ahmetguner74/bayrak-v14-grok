@@ -74,7 +74,10 @@ async function startGame() {
     gameOverModal.classList.add('hidden');
     if (timer) clearInterval(timer);
     timer = setInterval(updateTimer, 1000);
-    createNewQuestion();
+    
+    // Başlangıçta mesajı göster
+    document.getElementById('welcome-message').classList.remove('hidden');
+    document.getElementById('flag-image').classList.add('hidden');
 }
 
 function endGame() {
@@ -93,7 +96,12 @@ function endGame() {
 function createNewQuestion() {
     const selectedCountries = getRandomCountries();
     currentFlag = selectedCountries[getRandomInt(4)];
-    flagImage.src = `public/flags/${currentFlag.code}.svg`;
+    
+    // Hoş geldin mesajını gizle, bayrağı göster
+    document.getElementById('welcome-message').classList.add('hidden');
+    document.getElementById('flag-image').classList.remove('hidden');
+    document.getElementById('flag-image').src = `public/flags/${currentFlag.code}.svg`;
+    
     selectedCountries.sort(() => Math.random() - 0.5);
     options.forEach((option, index) => {
         option.textContent = selectedCountries[index].name_tr;
