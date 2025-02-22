@@ -23,6 +23,7 @@ let highScore = localStorage.getItem('highScore') || 0;
 let hintsLeft = 3;
 let isGameActive = false;
 let countries = [];
+let lang = 'tr'; // Varsayılan Türkçe
 
 async function loadFlags() {
     try {
@@ -93,6 +94,11 @@ function endGame() {
     gameOverModal.classList.remove('hidden');
 }
 
+function toggleLang() {
+    lang = lang === 'tr' ? 'en' : 'tr';
+    createNewQuestion();
+}
+
 function createNewQuestion() {
     const selectedCountries = getRandomCountries();
     currentFlag = selectedCountries[getRandomInt(4)];
@@ -104,7 +110,7 @@ function createNewQuestion() {
     
     selectedCountries.sort(() => Math.random() - 0.5);
     options.forEach((option, index) => {
-        option.textContent = selectedCountries[index].name_tr;
+        option.textContent = selectedCountries[index][`name_${lang}`];
         option.classList.remove('correct', 'wrong', 'disabled');
     });
 }

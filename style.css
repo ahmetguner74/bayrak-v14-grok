@@ -329,3 +329,17 @@ header {
     .admin-container { padding: 1rem; }
     .flag-list th, .flag-list td { font-size: 0.9rem; }
 }
+
+#lang-toggle {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#lang-toggle:hover {
+    background-color: #45a049;
+}
