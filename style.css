@@ -81,6 +81,12 @@ header {
     margin-bottom: 1.5rem;
 }
 
+h1 {
+    color: #1a73e8;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .stats {
     display: flex;
     justify-content: space-around;
@@ -104,7 +110,6 @@ header {
     border: 2px solid #1a73e8;
     border-radius: 12px;
     overflow: hidden;
-    position: relative;
     background: url('https://cdn.pixabay.com/photo/2015/07/17/22/43/flag-849010_1280.jpg') no-repeat center;
     background-size: cover;
     opacity: 0.8;
@@ -119,28 +124,6 @@ header {
 
 #flag-image.hidden {
     display: none;
-}
-
-.welcome-message {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #1a73e8;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 1.5rem;
-    border-radius: 10px;
-    animation: fadeIn 1.5s ease-in-out infinite;
-}
-
-.welcome-message h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.welcome-message p {
-    font-size: 1.1rem;
 }
 
 .options-container {
@@ -308,12 +291,6 @@ header {
     border-radius: 8px;
 }
 
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
 @media (max-width: 480px) {
     h1 { font-size: 2rem; }
     p { font-size: 1rem; }
@@ -324,22 +301,6 @@ header {
     .stats { flex-direction: column; gap: 0.5rem; }
     .controls { flex-direction: column; }
     .control-btn { width: 100%; margin-bottom: 0.5rem; }
-    .welcome-message h2 { font-size: 1.5rem; }
-    .welcome-message p { font-size: 1rem; }
     .admin-container { padding: 1rem; }
     .flag-list th, .flag-list td { font-size: 0.9rem; }
-}
-
-#lang-toggle {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 5px;
-}
-
-#lang-toggle:hover {
-    background-color: #45a049;
 }

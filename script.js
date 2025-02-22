@@ -8,6 +8,7 @@ const startButton = document.getElementById('start-btn');
 const restartButton = document.getElementById('restart-btn');
 const gameOverModal = document.getElementById('game-over');
 const finalScoreElement = document.getElementById('final-score');
+const langToggle = document.getElementById('lang-toggle');
 
 const correctSound = document.getElementById('correct-sound');
 const wrongSound = document.getElementById('wrong-sound');
@@ -75,10 +76,7 @@ async function startGame() {
     gameOverModal.classList.add('hidden');
     if (timer) clearInterval(timer);
     timer = setInterval(updateTimer, 1000);
-    
-    // Başlangıçta mesajı göster
-    document.getElementById('welcome-message').classList.remove('hidden');
-    document.getElementById('flag-image').classList.add('hidden');
+    createNewQuestion();
 }
 
 function endGame() {
@@ -94,20 +92,11 @@ function endGame() {
     gameOverModal.classList.remove('hidden');
 }
 
-function toggleLang() {
-    lang = lang === 'tr' ? 'en' : 'tr';
-    createNewQuestion();
-}
-
 function createNewQuestion() {
     const selectedCountries = getRandomCountries();
     currentFlag = selectedCountries[getRandomInt(4)];
-    
-    // Hoş geldin mesajını gizle, bayrağı göster
-    document.getElementById('welcome-message').classList.add('hidden');
-    document.getElementById('flag-image').classList.remove('hidden');
-    document.getElementById('flag-image').src = `public/flags/${currentFlag.code}.svg`;
-    
+    flagImage.classList.remove('hidden');
+    flagImage.src = `public/flags/${currentFlag.code}.svg`;
     selectedCountries.sort(() => Math.random() - 0.5);
     options.forEach((option, index) => {
         option.textContent = selectedCountries[index][`name_${lang}`];
@@ -115,12 +104,19 @@ function createNewQuestion() {
     });
 }
 
+function toggleLang() {
+    lang = lang === 'tr' ? 'en' : 'tr';
+    if (!isGameActive) {
+        createNewQuestion(); // Oyun başlamadıysa dili güncelle
+    }
+}
+
 function useHint() {
     if (hintsLeft > 0 && isGameActive) {
         hintsLeft--;
         hintButton.textContent = `İpucu (${hintsLeft})`;
         hintSound.play().catch(err => console.log('Ses hatası:', err));
-        const wrongOptions = Array.from(options).filter(option => option.textContent !== currentFlag.name_tr);
+        const wrongOptions = Array.from(options).filter(option => option.textContent !== currentFlag[`name_${lang}`]);
         for (let i = 0; i < 2; i++) {
             const randomIndex = getRandomInt(wrongOptions.length);
             wrongOptions[randomIndex].classList.add('disabled');
@@ -132,7 +128,7 @@ function useHint() {
 function checkAnswer(selectedOption) {
     if (!isGameActive || selectedOption.classList.contains('disabled')) return;
     const selectedCountry = selectedOption.textContent;
-    if (selectedCountry === currentFlag.name_tr) {
+    if (selectedCountry === currentFlag[`name_${lang}`]) {
         selectedOption.classList.add('correct');
         score++;
         scoreElement.textContent = score;
@@ -140,7 +136,7 @@ function checkAnswer(selectedOption) {
     } else {
         selectedOption.classList.add('wrong');
         options.forEach(option => {
-            if (option.textContent === currentFlag.name_tr) option.classList.add('correct');
+            if (option.textContent === currentFlag[`name_${lang}`]) option.classList.add('correct');
         });
         wrongSound.play().catch(err => console.log('Ses hatası:', err));
     }
@@ -152,5 +148,6 @@ options.forEach(option => option.addEventListener('click', () => checkAnswer(opt
 hintButton.addEventListener('click', useHint);
 startButton.addEventListener('click', startGame);
 restartButton.addEventListener('click', startGame);
+langToggle.addEventListener('click', toggleLang);
 
 loadFlags();
