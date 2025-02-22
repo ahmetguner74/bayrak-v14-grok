@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayrak Yönetim Paneli</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Bayrak Yönetim Paneli</h1>
+        <div class="flag-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ülke Kodu</th>
+                        <th>Ülke Adı (TR)</th>
+                        <th>Ülke Adı (EN)</th>
+                        <th>Bayrak</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody id="flag-table"></tbody>
+            </table>
+        </div>
+        <div class="add-flag">
+            <h3>Yeni Bayrak Ekle</h3>
+            <input type="text" id="country-code" placeholder="Ülke Kodu (ör: tr)">
+            <input type="text" id="country-name-tr" placeholder="Ülke Adı (TR)">
+            <input type="text" id="country-name-en" placeholder="Ülke Adı (EN)">
+            <button id="add-btn" class="control-btn">Bayrak Ekle</button>
+        </div>
+        <div class="bulk-upload">
+            <h3>Toplu Yükleme</h3>
+            <input type="file" id="csv-file" accept=".csv">
+            <button id="upload-btn" class="control-btn">CSV Yükle</button>
+        </div>
+        <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
