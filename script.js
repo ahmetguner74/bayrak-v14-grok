@@ -95,7 +95,6 @@ function endGame() {
 function createNewQuestion() {
     const selectedCountries = getRandomCountries();
     currentFlag = selectedCountries[getRandomInt(4)];
-    flagImage.classList.remove('hidden');
     flagImage.src = `public/flags/${currentFlag.code}.svg`;
     selectedCountries.sort(() => Math.random() - 0.5);
     options.forEach((option, index) => {
@@ -114,7 +113,7 @@ function toggleLang() {
 function useHint() {
     if (hintsLeft > 0 && isGameActive) {
         hintsLeft--;
-        hintButton.textContent = `İpucu (${hintsLeft})`;
+        hintButton.textContent = `Hint (${hintsLeft})`;
         hintSound.play().catch(err => console.log('Ses hatası:', err));
         const wrongOptions = Array.from(options).filter(option => option.textContent !== currentFlag[`name_${lang}`]);
         for (let i = 0; i < 2; i++) {

@@ -1,0 +1,8 @@
+# Bayrak Bilmece Oyunu
+# Web tabanlı ve mobil uyumlu
+# Klasörler:
+# - public/flags: 255 bayrak (tr.svg formatında)
+# - public/sounds: Ses dosyaları (correct.mp3, game-over.mp3, hint.mp3, tick.mp3, wrong.mp3)
+# Bayrak verileri flags.json’da, format: { "code": "tr", "name_tr": "Türkiye", "name_en": "Turkey" }
+# Teknolojiler: HTML, CSS, JavaScript
+# Online test için GitHub Pages kullanılacak  
